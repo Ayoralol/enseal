@@ -9,8 +9,8 @@ Optionally you can also provide an EnSeal key that has already been generated fo
 
 ##### Warning
 
-The import file must only contain characters present on an ANSI QWERTY Keyboard.
+The import file for encoding a message must only contain characters present on an ANSI QWERTY Keyboard.
 
 ## Decoding
 
-Provide the EnSeal key and import your already encoded .txt file to get the original message back!
+Provide the EnSeal key and import your already encoded .txt file to get the original message back! (to be made)
