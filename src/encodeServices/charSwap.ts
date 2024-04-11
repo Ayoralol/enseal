@@ -8,5 +8,6 @@ export const charSwap = (
     const index = charArray.indexOf(str[i]);
     result += index !== -1 ? seal[index] : str[i];
   }
+  console.log("Char Swap - ", result);
   return result;
 };

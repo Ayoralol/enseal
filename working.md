@@ -1,19 +1,16 @@
-4 layers of 1-1 char swapping, with 2 layers of char reducing
-tracked by the EnSeal key provided
+Encoding process
 
-A represents ae - that means we need 95\*95 (9025) letter representations - can have a01a02a03a04 to represent the correspoding numbers
+1. Generates a seal if one isnt provided
+2. splits the seal into the 3 needed parts
+3. charSwaps the original QWERTY chars with normal chars
+4. reduces the swapped chars using the seal into utf-8 chars
+5. charswaps the utf-8 chars into other utf-8 chars
+6. exports the encoded message + the generated seal for download
 
-char swapping is a simple 95 char long code in the EnSeal ending with a .
+Decoding process
 
-char reducing will take a string of random numbers between 01 and 95, this number shifts the secondary char that many places on the object
-
-aa with code 2 will mean a represents ac
-the second reducing path will swap the letters so aa with 2 will be ca
-
-OOO
-
-INPUT STRING -> SWAP -> REDUCE -> SWAP -> SWAP -> REDUCE -> SWAP
-
-EnSeal will be 95 . 190 . 95 . 95 . 190 . 95 . 123456-> 772 characters long but will be reusable
-
-EnSeal format -> 123456.[red].[]
+1. Splits the provided seal into the needed parts
+2. reverseSwaps the utf-8 into the original utf-8 chars
+3. expands the utf-8 chars into the QWERTY chars
+4. reverseSwaps the chars into the original QWERTY chars
+5. Exports the decoded message for download

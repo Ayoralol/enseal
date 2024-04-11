@@ -1,3 +1,5 @@
+import {reverseCharReduce} from "../decodeServices/reverseReduce";
+import {reverseSwap} from "../decodeServices/reverseSwap";
 import {charReduce} from "./charReduce";
 import {charSwap} from "./charSwap";
 import {generateUtf8} from "./smallerServices";
@@ -8,7 +10,7 @@ export const masterFunction = (str: string, seal: string): string => {
     return "Invalid EnSeal";
   }
   if (str.length % 2 != 0) {
-    str += ".";
+    str += " ";
   }
   const swapsReduces = [
     seal.slice(9025, 9025 + 95),
@@ -21,5 +23,9 @@ export const masterFunction = (str: string, seal: string): string => {
   let passTwo = charReduce(passOne, swapsReduces[1]);
   let passThree = charSwap(passTwo, swapsReduces[2], utf8CharArray);
 
-  return passThree;
+  let passFour = reverseSwap(passThree, swapsReduces[2], utf8CharArray);
+  let passFive = reverseCharReduce(passFour, swapsReduces[1]);
+  let passSix = reverseSwap(passFive, swapsReduces[0], charArray);
+
+  return passSix;
 };
