@@ -68,3 +68,32 @@ export const txtFileToString = async (file: string): Promise<string> => {
     return "";
   }
 };
+
+export const jsonFileToString = async (file: string): Promise<string> => {
+  try {
+    const response = await fetch(file, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch the file");
+    }
+    const text = await response.text();
+    return text;
+  } catch (err) {
+    console.error(err);
+    return "";
+  }
+};
+
+export const useUtf8CharArray = async () => {
+  try {
+    const jsonString = await jsonFileToString("utf8CharArray.json");
+    const utf8CharArray = JSON.parse(jsonString);
+    return utf8CharArray;
+  } catch (error) {
+    console.error("Error loading utf8CharArray:", error);
+    return [];
+  }
+};

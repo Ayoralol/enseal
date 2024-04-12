@@ -9,6 +9,5 @@ export const charReduce = (str: string, seal: string): string => {
     const pair = str[i] + str[i + 1];
     result += reducedObject[pair];
   }
-  console.log("Char Reduce - ", result);
   return result;
 };

@@ -5,9 +5,13 @@ export const reverseSwap = (
 ): string => {
   let result = "";
   for (let i = 0; i < str.length; i++) {
+    if (result.length === str.length) break;
     const index = seal.indexOf(str[i]);
-    result += index !== -1 ? charArray[index] : str[i];
+    if (index !== -1 && index < charArray.length) {
+      result += charArray[index];
+    } else {
+      result += str[i];
+    }
   }
-  console.log("Reverse Swap - ", result);
   return result;
 };

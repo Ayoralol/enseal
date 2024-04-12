@@ -1,9 +1,9 @@
 import {charReduce} from "./charReduce";
 import {charSwap} from "./charSwap";
-import {generateUtf8} from "./smallerServices";
-import {charArray, invalidIndexes} from "./structures";
+import {useUtf8CharArray} from "./smallerServices";
+import {charArray} from "./structures";
 
-export const masterFunction = (str: string, seal: string): string => {
+export const masterFunction = async (str: string, seal: string) => {
   if (seal.length != 18145) {
     return "Invalid EnSeal";
   }
@@ -15,7 +15,7 @@ export const masterFunction = (str: string, seal: string): string => {
     seal.slice(0, 9025),
     seal.slice(9025 + 95, 9025 + 95 + 9025),
   ];
-  const utf8CharArray = generateUtf8(invalidIndexes);
+  const utf8CharArray = await useUtf8CharArray();
 
   let passOne = charSwap(str, swapsReduces[0], charArray);
   let passTwo = charReduce(passOne, swapsReduces[1]);

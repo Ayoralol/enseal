@@ -14,6 +14,5 @@ export const reverseCharReduce = (str: string, seal: string): string => {
     result += reverseReducedObject[char] || char;
   }
 
-  console.log("Reverse Char Reduce - ", result);
   return result;
 };

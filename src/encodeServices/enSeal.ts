@@ -1,10 +1,10 @@
-import {fischerYates, generateUtf8} from "./smallerServices";
-import {charArray, invalidIndexes} from "./structures";
+import {fischerYates, useUtf8CharArray} from "./smallerServices";
+import {charArray} from "./structures";
 
-export const enSeal = () => {
-  const reducer = fischerYates(generateUtf8(invalidIndexes));
+export const enSeal = async () => {
+  const reducer = fischerYates(await useUtf8CharArray());
   const straightSwap = fischerYates(charArray);
-  const utfSwap = fischerYates(generateUtf8(invalidIndexes));
+  const utfSwap = fischerYates(await useUtf8CharArray());
 
   const enSeal = reducer.join("") + straightSwap.join("") + utfSwap.join("");
   return enSeal;
