@@ -1,18 +1,27 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {decodeControl} from "../../decodeServices/decodeControl";
 
-const Decode = () => {
+interface DecodeProps {
+  utf: string[];
+}
+
+const Decode: React.FC<DecodeProps> = ({utf}) => {
   const [seal, setSeal] = useState("");
   const [text, setText] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setSeal("");
+    setText("");
+  }, []);
 
   const handleHome = () => {
     navigate("/");
   };
 
   const handleSealUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[event.target.files.length - 1];
 
     if (file) {
       const reader = new FileReader();
@@ -29,7 +38,7 @@ const Decode = () => {
   };
 
   const handleMessageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[event.target.files.length - 1];
 
     if (file) {
       const reader = new FileReader();
@@ -51,7 +60,7 @@ const Decode = () => {
         "Your message will be Decoded using the provided EnSeal. Continue and Download?"
       )
     ) {
-      decodeControl(text, seal);
+      decodeControl(text, seal, utf);
     }
   };
 

@@ -1,18 +1,27 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {control} from "../../encodeServices/control";
 
-const EncodeExisting = () => {
+interface EncodeExistingProps {
+  utf: string[];
+}
+
+const EncodeExisting: React.FC<EncodeExistingProps> = ({utf}) => {
   const [seal, setSeal] = useState("");
-  const [textx, setTextx] = useState("");
+  const [text, setText] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setSeal("");
+    setText("");
+  }, []);
 
   const handleHome = () => {
     navigate("/");
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+    const file = event.target.files?.[event.target.files.length - 1];
 
     if (file) {
       const reader = new FileReader();
@@ -34,12 +43,12 @@ const EncodeExisting = () => {
         "Your message will be Encoded using the provided EnSeal. Continue and Download?"
       )
     ) {
-      control(textx, seal);
+      control(text, seal, utf);
     }
   };
 
   const textChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTextx(event.target.value);
+    setText(event.target.value);
   };
 
   // Encode the message with an existing EnSeal and DL the encoded message

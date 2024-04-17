@@ -1,10 +1,17 @@
 import {useNavigate} from "react-router-dom";
+import {enSeal} from "../../encodeServices/enSeal";
 
-const Home = () => {
+interface HomeProps {
+  utf: string[];
+}
+
+const Home: React.FC<HomeProps> = ({utf}) => {
   const navigate = useNavigate();
 
-  const handleNew = () => {
-    navigate("/encode-new");
+  const handleEnseal = () => {
+    if (window.confirm("Generate and Download a new EnSeal?")) {
+      enSeal(utf);
+    }
   };
   const handleExisting = () => {
     navigate("/encode-existing");
@@ -17,9 +24,9 @@ const Home = () => {
     <div>
       <p>
         Choose what you would like to do to get more information, if you do not
-        have an EnSeal already, choose Encode and Generate New Enseal
+        have an EnSeal already you must generate one
       </p>
-      <button onClick={handleNew}>Encode and Generate New Enseal</button>
+      <button onClick={handleEnseal}>Generate an EnSeal</button>
       <button onClick={handleExisting}>Encode with Existing Enseal</button>
       <button onClick={handleDecode}>Decode with Existing Enseal</button>
     </div>
