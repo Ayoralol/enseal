@@ -10,18 +10,19 @@ export const decodeMaster = async (
   if (seal.length != 18145) {
     return "Invalid EnSeal";
   }
-  if (str.length % 2 != 0) {
-    str += " ";
-  }
   const swapsReduces = [
     seal.slice(9025, 9025 + 95),
     seal.slice(0, 9025),
     seal.slice(9025 + 95, 9025 + 95 + 9025),
   ];
 
+  console.log(str);
   let passOne = reverseSwap(str, swapsReduces[2], utf);
+  console.log(passOne);
   let passTwo = reverseCharReduce(passOne, swapsReduces[1]);
+  console.log(passTwo);
   let passThree = reverseSwap(passTwo, swapsReduces[0], charArray);
+  console.log(passThree);
 
   return passThree;
 };
