@@ -16,13 +16,9 @@ export const decodeMaster = async (
     seal.slice(9025 + 95, 9025 + 95 + 9025),
   ];
 
-  console.log(str);
   let passOne = reverseSwap(str, swapsReduces[2], utf);
-  console.log(passOne);
   let passTwo = reverseCharReduce(passOne, swapsReduces[1]);
-  console.log(passTwo);
   let passThree = reverseSwap(passTwo, swapsReduces[0], charArray);
-  console.log(passThree);
 
   return passThree;
 };

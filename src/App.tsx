@@ -3,6 +3,7 @@ import Home from "./pages/Home/Home";
 import EncodeExisting from "./pages/EncodeExisting/EncodeExisting";
 import Decode from "./pages/Decode/Decode";
 import {useEffect, useState} from "react";
+import Background from "./components/Background/Background";
 
 function App() {
   const [utf8, setUtf8] = useState<string[]>([]);
@@ -18,14 +19,16 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home utf={utf8} />} />
-          <Route
-            path="/encode-existing"
-            element={<EncodeExisting utf={utf8} />}
-          />
-          <Route path="/decode" element={<Decode utf={utf8} />} />
-        </Routes>
+        <Background>
+          <Routes>
+            <Route path="/" element={<Home utf={utf8} />} />
+            <Route
+              path="/encode-existing"
+              element={<EncodeExisting utf={utf8} />}
+            />
+            <Route path="/decode" element={<Decode utf={utf8} />} />
+          </Routes>
+        </Background>
       </BrowserRouter>
     </>
   );

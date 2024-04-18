@@ -3,9 +3,9 @@ import {fischerYates} from "./smallerServices";
 import {charArray} from "./structures";
 
 export const enSeal = async (utf: string[]) => {
-  const reducer = fischerYates(utf);
-  const straightSwap = fischerYates(charArray);
-  const utfSwap = fischerYates(utf);
+  const reducer = await fischerYates(utf);
+  const straightSwap = await fischerYates(charArray);
+  const utfSwap = await fischerYates(utf);
 
   const enSeal = reducer.join("") + straightSwap.join("") + utfSwap.join("");
   const enSealDL = new Blob([enSeal], {

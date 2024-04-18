@@ -1,4 +1,4 @@
-export const fischerYates = (array: any[]): any[] => {
+export const fischerYates = async (array: any[]) => {
   let copy = array.slice();
 
   let currentIndex = copy.length,
@@ -13,7 +13,7 @@ export const fischerYates = (array: any[]): any[] => {
     copy[randomIndex] = temporaryValue;
   }
 
-  return array;
+  return copy;
 };
 
 export const reduceObject = (

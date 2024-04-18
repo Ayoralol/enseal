@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {decodeControl} from "../../decodeServices/decodeControl";
+import Button from "../../components/Button/Button";
 
 interface DecodeProps {
   utf: string[];
@@ -10,6 +11,12 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
   const [seal, setSeal] = useState("");
   const [text, setText] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (utf.length === 0) {
+      navigate("/");
+    }
+  }, [utf, navigate]);
 
   useEffect(() => {
     setSeal("");
@@ -68,11 +75,11 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
 
   return (
     <div>
-      <button onClick={handleHome}>Home</button>
+      <Button handleClick={handleHome}>Home</Button>
       <div>
         <input type="file" accept=".txt" onChange={handleMessageUpload} />
         <input type="file" accept=".txt" onChange={handleSealUpload} />
-        <button onClick={handleSubmit}>Submit</button>
+        <Button handleClick={handleSubmit}>Submit</Button>
       </div>
     </div>
   );
