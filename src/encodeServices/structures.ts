@@ -94,7 +94,6 @@ export const charObject = {
   "93": "|",
   "94": "}",
   "95": "~",
-  "96": "\n",
 };
 
 export const charArray = [
@@ -193,7 +192,6 @@ export const charArray = [
   "|",
   "}",
   "~",
-  "\n",
 ];
 
 export const numArray = [

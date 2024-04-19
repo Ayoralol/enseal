@@ -11,7 +11,7 @@ export const masterFunction = async (
     return "Invalid EnSeal";
   }
   if (str.length % 2 != 0) {
-    str += " ";
+    str += ".";
   }
   const swapsReduces = [
     seal.slice(9025, 9025 + 95),

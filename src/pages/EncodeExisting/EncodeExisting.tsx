@@ -11,7 +11,6 @@ interface EncodeExistingProps {
 const EncodeExisting: React.FC<EncodeExistingProps> = ({utf}) => {
   const [seal, setSeal] = useState("");
   const [text, setText] = useState("");
-  const [textBox, setTextBox] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const EncodeExisting: React.FC<EncodeExistingProps> = ({utf}) => {
   useEffect(() => {
     setSeal("");
     setText("");
-    setTextBox(true);
   }, []);
 
   const handleHome = () => {
@@ -57,69 +55,20 @@ const EncodeExisting: React.FC<EncodeExistingProps> = ({utf}) => {
     }
   };
 
-  const handleInputSwap = () => {
-    setText("");
-    setTextBox(!textBox);
-  };
-
   const textChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(event.target.value);
-  };
-
-  const handleMessageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[event.target.files.length - 1];
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = (event) => {
-        const contents = event.target?.result as string;
-        if (contents) {
-          setText(contents);
-        }
-      };
-
-      reader.readAsText(file);
-    }
   };
 
   return (
     <div className={styles.encode}>
       <div className={styles.encode__top}>
         <Button handleClick={handleHome}>Home</Button>
-        <Button handleClick={handleInputSwap}>
-          {textBox ? "Upload a file instead" : "Manually type the message"}
-        </Button>
       </div>
       <div className={styles.encode__inputs}>
-        {textBox ? (
-          <textarea
-            onChange={textChange}
-            className={styles.encode__inputs__textarea}
-          />
-        ) : (
-          <div>
-            <label
-              htmlFor="message-upload"
-              className={styles.encode__inputs__label}>
-              Upload File to Encode
-            </label>
-            <input
-              id="message-upload"
-              type="file"
-              accept=".txt"
-              onChange={handleMessageUpload}
-            />
-            {
-              <p
-                className={`${styles.encode__inputs__text} ${
-                  text ? styles.blue : styles.red
-                }`}>
-                {text ? "Message Uploaded" : "No File Loaded"}
-              </p>
-            }
-          </div>
-        )}
+        <textarea
+          onChange={textChange}
+          className={styles.encode__inputs__textarea}
+        />
         <div>
           <label
             htmlFor="enseal-upload"
