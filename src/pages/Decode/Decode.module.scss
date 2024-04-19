@@ -1,0 +1,41 @@
+.decode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 50%;
+  text-align: center;
+  &__sec {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    &__file {
+      border: 1px solid rgba(0, 0, 0, 0);
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      &:hover {
+        border: 1px solid #0f0;
+      }
+    }
+    &__text {
+      font-size: 12px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.blue {
+  color: #00f;
+}
+
+.red {
+  color: #f00;
+}
+
+input[type="file"] {
+  display: none;
+}

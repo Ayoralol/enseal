@@ -2,14 +2,15 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {decodeControl} from "../../decodeServices/decodeControl";
 import Button from "../../components/Button/Button";
+import styles from "./Decode.module.scss";
 
 interface DecodeProps {
   utf: string[];
 }
 
 const Decode: React.FC<DecodeProps> = ({utf}) => {
-  const [seal, setSeal] = useState("");
   const [text, setText] = useState("");
+  const [seal, setSeal] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,8 +20,8 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
   }, [utf, navigate]);
 
   useEffect(() => {
-    setSeal("");
     setText("");
+    setSeal("");
   }, []);
 
   const handleHome = () => {
@@ -71,14 +72,48 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
     }
   };
 
-  // Encode the message with an existing EnSeal and DL the encoded message
-
   return (
-    <div>
+    <div className={styles.decode}>
       <Button handleClick={handleHome}>Home</Button>
-      <div>
-        <input type="file" accept=".txt" onChange={handleMessageUpload} />
-        <input type="file" accept=".txt" onChange={handleSealUpload} />
+      <div className={styles.decode__sec}>
+        <div>
+          <label htmlFor="message-upload" className={styles.decode__sec__file}>
+            Upload File to Decode
+          </label>
+          <input
+            id="message-upload"
+            type="file"
+            accept=".txt"
+            onChange={handleMessageUpload}
+          />
+          {
+            <p
+              className={`${styles.decode__sec__text} ${
+                text ? styles.blue : styles.red
+              }`}>
+              {text ? "Message Uploaded" : "No File Loaded"}
+            </p>
+          }
+        </div>
+        <div>
+          <label htmlFor="enseal-upload" className={styles.decode__sec__file}>
+            Upload EnSeal
+          </label>
+          <input
+            id="enseal-upload"
+            type="file"
+            accept=".txt"
+            onChange={handleSealUpload}
+          />
+          {
+            <p
+              className={`${styles.decode__sec__text} ${
+                seal ? styles.blue : styles.red
+              }`}>
+              {seal ? "EnSeal Uploaded" : "No File Loaded"}
+            </p>
+          }
+        </div>
         <Button handleClick={handleSubmit}>Submit</Button>
       </div>
     </div>

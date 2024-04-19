@@ -1,0 +1,66 @@
+.encode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 50%;
+  width: 100%;
+  text-align: center;
+  &__top {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__inputs {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    &__textarea {
+      border: 1px solid rgba(0, 0, 0, 0);
+      display: inline-block;
+      padding: 6px 12px;
+      transition: all 0.3s ease;
+      background-color: rgba(0, 0, 0, 0);
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+      border-radius: 5px;
+      width: 60%;
+      height: 50%;
+      resize: none;
+      &:hover,
+      &:focus {
+        border: 1px solid #0f0;
+        outline: none;
+      }
+    }
+    &__label {
+      border: 1px solid rgba(0, 0, 0, 0);
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      &:hover {
+        border: 1px solid #0f0;
+      }
+    }
+    &__text {
+      font-size: 12px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.blue {
+  color: #00f;
+}
+
+.red {
+  color: #f00;
+}
+
+input[type="file"] {
+  display: none;
+}
