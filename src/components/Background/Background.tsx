@@ -1,7 +1,5 @@
-import {useLocation} from "react-router-dom";
 import IMAGES from "../../images/Images";
 import styles from "./Background.module.scss";
-import {useState, useEffect} from "react";
 
 interface BackgroundProps {
   children: React.ReactNode;
