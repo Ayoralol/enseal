@@ -7,9 +7,6 @@ export const masterFunction = async (
   seal: string,
   utf: string[]
 ) => {
-  if (seal.length != 18145) {
-    return "Invalid EnSeal";
-  }
   if (str.length % 2 != 0) {
     str += ".";
   }

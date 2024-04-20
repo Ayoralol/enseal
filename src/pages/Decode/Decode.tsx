@@ -77,6 +77,12 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
     }
   };
 
+  const handleInvalid = () => {
+    alert(
+      "Please make sure to upload the encoded message and a valid EnSeal file"
+    );
+  };
+
   return (
     <div className={styles.decode}>
       <Button handleClick={handleHome}>Home</Button>
@@ -119,7 +125,9 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
             </p>
           }
         </div>
-        <Button handleClick={handleSubmit}>Submit</Button>
+        <Button handleClick={!seal || !text ? handleInvalid : handleSubmit}>
+          Submit
+        </Button>
       </div>
     </div>
   );

@@ -7,9 +7,6 @@ export const decodeMaster = async (
   seal: string,
   utf: string[]
 ) => {
-  if (seal.length != 18145) {
-    return "Invalid EnSeal";
-  }
   const swapsReduces = [
     seal.slice(9025, 9025 + 95),
     seal.slice(0, 9025),

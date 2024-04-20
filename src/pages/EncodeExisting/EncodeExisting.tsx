@@ -64,6 +64,10 @@ const EncodeExisting: React.FC<EncodeExistingProps> = ({utf}) => {
     setText(event.target.value);
   };
 
+  const handleInvalid = () => {
+    alert("Please make sure to write a message and upload a valid EnSeal file");
+  };
+
   return (
     <div className={styles.encode}>
       <div className={styles.encode__top}>
@@ -95,7 +99,9 @@ const EncodeExisting: React.FC<EncodeExistingProps> = ({utf}) => {
             </p>
           }
         </div>
-        <Button handleClick={handleSubmit}>Submit</Button>
+        <Button handleClick={!seal || !text ? handleInvalid : handleSubmit}>
+          Submit
+        </Button>
       </div>
     </div>
   );
