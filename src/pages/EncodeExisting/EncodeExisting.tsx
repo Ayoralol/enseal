@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {control} from "../../encodeServices/control";
 import Button from "../../components/Button/Button";
 import styles from "./EncodeExisting.module.scss";
+import {ensealValidation} from "../../encodeServices/ensealValidation";
 
 interface EncodeExistingProps {
   utf: string[];
@@ -29,6 +30,7 @@ const EncodeExisting: React.FC<EncodeExistingProps> = ({utf}) => {
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSeal("");
     const file = event.target.files?.[event.target.files.length - 1];
 
     if (file) {
@@ -36,8 +38,11 @@ const EncodeExisting: React.FC<EncodeExistingProps> = ({utf}) => {
 
       reader.onload = (event) => {
         const contents = event.target?.result as string;
-        if (contents) {
+        const isValid = ensealValidation(contents, utf);
+        if (isValid) {
           setSeal(contents);
+        } else {
+          alert("Invalid EnSeal File");
         }
       };
 

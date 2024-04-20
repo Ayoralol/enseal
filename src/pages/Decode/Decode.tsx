@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {decodeControl} from "../../decodeServices/decodeControl";
 import Button from "../../components/Button/Button";
 import styles from "./Decode.module.scss";
+import {ensealValidation} from "../../encodeServices/ensealValidation";
 
 interface DecodeProps {
   utf: string[];
@@ -29,6 +30,7 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
   };
 
   const handleSealUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSeal("");
     const file = event.target.files?.[event.target.files.length - 1];
 
     if (file) {
@@ -36,8 +38,11 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
 
       reader.onload = (event) => {
         const contents = event.target?.result as string;
-        if (contents) {
+        const isValid = ensealValidation(contents, utf);
+        if (isValid) {
           setSeal(contents);
+        } else {
+          alert("Invalid EnSeal File");
         }
       };
 
