@@ -12,6 +12,8 @@ interface DecodeProps {
 const Decode: React.FC<DecodeProps> = ({utf}) => {
   const [text, setText] = useState("");
   const [seal, setSeal] = useState("");
+  const [sealName, setSealName] = useState("");
+  const [messageName, setMessageName] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,15 +36,22 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
     const file = event.target.files?.[event.target.files.length - 1];
 
     if (file) {
+      const fileName = file.name;
+      setSealName(fileName);
+
       const reader = new FileReader();
 
       reader.onload = (event) => {
         const contents = event.target?.result as string;
         const isValid = ensealValidation(contents, utf);
-        if (isValid) {
-          setSeal(contents);
+        if (fileName.length < 40) {
+          if (isValid) {
+            setSeal(contents);
+          } else {
+            alert("Invalid EnSeal File");
+          }
         } else {
-          alert("Invalid EnSeal File");
+          alert("Please shorten the name of the  file you wish to upload");
         }
       };
 
@@ -54,12 +63,19 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
     const file = event.target.files?.[event.target.files.length - 1];
 
     if (file) {
+      const fileName = file.name;
+      setMessageName(fileName);
+
       const reader = new FileReader();
 
       reader.onload = (event) => {
         const contents = event.target?.result as string;
-        if (contents) {
-          setText(contents);
+        if (fileName.length < 40) {
+          if (contents) {
+            setText(contents);
+          }
+        } else {
+          alert("Please shorten the name of the  file you wish to upload");
         }
       };
 
@@ -100,9 +116,9 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
           {
             <p
               className={`${styles.decode__sec__text} ${
-                text ? styles.blue : styles.red
+                text ? "" : styles.red
               }`}>
-              {text ? "Message Uploaded" : "No File Loaded"}
+              {text ? messageName + " Uploaded" : "No File Loaded"}
             </p>
           }
         </div>
@@ -119,9 +135,9 @@ const Decode: React.FC<DecodeProps> = ({utf}) => {
           {
             <p
               className={`${styles.decode__sec__text} ${
-                seal ? styles.blue : styles.red
+                seal ? "" : styles.red
               }`}>
-              {seal ? "EnSeal Uploaded" : "No File Loaded"}
+              {seal ? sealName + " Uploaded" : "No File Loaded"}
             </p>
           }
         </div>
