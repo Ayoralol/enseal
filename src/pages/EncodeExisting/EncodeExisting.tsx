@@ -4,6 +4,7 @@ import {control} from "../../encodeServices/control";
 import Button from "../../components/Button/Button";
 import styles from "./EncodeExisting.module.scss";
 import {ensealValidation} from "../../encodeServices/ensealValidation";
+import {charArray} from "../../encodeServices/structures";
 
 interface EncodeExistingProps {
   utf: string[];
@@ -59,12 +60,17 @@ const EncodeExisting: React.FC<EncodeExistingProps> = ({utf}) => {
   };
 
   const handleSubmit = () => {
-    if (
-      window.confirm(
-        "Your message will be Encoded using the provided EnSeal. Continue and Download?"
-      )
-    ) {
-      control(text, seal, utf);
+    // check if text only contains characters from the charArray
+    if (text.split("").every((char) => charArray.includes(char))) {
+      if (
+        window.confirm(
+          "Your message will be Encoded using the provided EnSeal. Continue and Download?"
+        )
+      ) {
+        control(text, seal, utf);
+      }
+    } else {
+      alert("Invalid characters in message");
     }
   };
 

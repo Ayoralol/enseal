@@ -29,15 +29,15 @@ const HowTo: React.FC<HowToProps> = ({utf}) => {
       </p>
       <p className={styles.how__para}>
         This file is used as the "key" when encoding and decoding a message, and
-        will not work properly if the contents are edited.
-      </p>
-      <p className={styles.how__para}>
-        Anyone you give that EnSeal to will be able to decode the messages that
-        you send them.
+        will not work properly if the contents are edited. Anyone you give that
+        EnSeal to will be able to decode the messages that you send them.
       </p>
       <p className={styles.how__para}>
         When you encode and decode a message, they will also be downloaded as
         .txt files.
+      </p>
+      <p className={styles.how__para}>
+        Ensure you only use characters avaliable on an ANSI QWERTY Keyboard.
       </p>
       <p className={styles.how__para}>
         You dont need to worry about someone else generating the same EnSeal as
