@@ -45,8 +45,8 @@ const HowTo: React.FC<HowToProps> = ({utf}) => {
         x 10^63708 (Or just a really big number).
       </p>
       <p className={styles.how__para}>
-        If you have line breaks in your message, they will not be preserved when
-        encoding and decoding.
+        If you have line breaks in your message (by pressing enter), they will
+        not be preserved when encoding and decoding.
       </p>
     </div>
   );

@@ -3,8 +3,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 50%;
-  width: 100%;
+  height: 100%;
+  width: 50%;
   text-align: center;
   &__top {
     width: 80%;
@@ -16,7 +16,7 @@
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     &__textarea {
@@ -25,14 +25,15 @@
       padding: 6px 12px;
       transition: all 0.3s ease;
       background-color: rgba(0, 0, 0, 0);
-      box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
-      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      border-radius: 10px;
       width: 60%;
-      height: 50%;
+      height: 60%;
       resize: none;
+      font-size: 12px;
       &:hover,
       &:focus {
-        border: 1px solid #0f0;
+        border: 1px solid rgb(255, 255, 255);
         outline: none;
       }
     }
@@ -43,7 +44,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       &:hover {
-        border: 1px solid #0f0;
+        border: 1px solid rgb(255, 255, 255);
       }
     }
     &__text {

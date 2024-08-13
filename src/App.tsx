@@ -1,7 +1,5 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home/Home";
-import EncodeExisting from "./pages/EncodeExisting/EncodeExisting";
-import Decode from "./pages/Decode/Decode";
 import {useEffect, useState} from "react";
 import Background from "./components/Background/Background";
 import HowTo from "./pages/HowTo/HowTo";
@@ -23,11 +21,6 @@ function App() {
         <Background>
           <Routes>
             <Route path="/" element={<Home utf={utf8} />} />
-            <Route
-              path="/encode-existing"
-              element={<EncodeExisting utf={utf8} />}
-            />
-            <Route path="/decode" element={<Decode utf={utf8} />} />
             <Route path="/how-to" element={<HowTo utf={utf8} />} />
           </Routes>
         </Background>
